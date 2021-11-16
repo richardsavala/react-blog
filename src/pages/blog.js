@@ -2,7 +2,7 @@ import React from "react";
 
 import BlogRoll from "../components/BlogRoll";
 
-class BlogIndexPage extends React.Component {
+export default class BlogIndexPage extends React.Component {
   render() {
     return (
       <React.Fragment>
@@ -16,5 +16,3 @@ class BlogIndexPage extends React.Component {
     );
   }
 }
-
-export default BlogIndexPage;
