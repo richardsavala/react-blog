@@ -1,0 +1,5 @@
+{
+    "componentChunkName": "component---src-templates-blog-js",
+    "path": "/blog/October2021",
+    "result": {"data":{"markdownRemark":{"html":"<p>This October I studied Git and Netlify, it was a great month! I used what I learned to deploy my React portfolio site <a href=\"richatrd-savala.com\"></a><a href=\"richard-savala.com\">richard-savala.com</a>.</p>","frontmatter":{"date":"November 13, 2021","path":"/blog/October2021","title":"October 2021"}}},"pageContext":{}},
+    "staticQueryHashes": []}

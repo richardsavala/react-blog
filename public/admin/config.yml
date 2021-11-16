@@ -1,6 +1,6 @@
 backend:
-  name:github
-  repo: richardsavala/react-blog
+  name: github
+  branch: main
 
 media_folder: static/assets
 public_folder: assets
