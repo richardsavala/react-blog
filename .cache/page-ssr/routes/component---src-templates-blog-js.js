@@ -17,13 +17,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
 function Template({
-  data // this prop will be injected by the GraphQL query below.
-
+  data
 }) {
   const {
     markdownRemark
-  } = data; // data.markdownRemark holds your post data
-
+  } = data;
   const {
     frontmatter,
     html
