@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "gatsby";
 
-export default function Home() {
+const index = () => {
   return (
     <>
       Hello world!
@@ -13,4 +13,6 @@ export default function Home() {
       </p>
     </>
   );
-}
+};
+
+export default index;
