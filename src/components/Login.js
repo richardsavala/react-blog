@@ -29,6 +29,34 @@ class Login extends React.Component {
   }
 
   async componentDidMount() {
+    const authClient = this.signIn.authClient
+    const session = await authClient.session.get()
+    console.log('session.status, session.status')
+    if (session.status === 'ACTIVE'){
+        window.location.hash = ''
+        this.setState( state: {user: session.login})
+        localStorage.setItem('isAuthenticated','true')
+        authClient.token.getWithoutPrompt({
+            scopes:['openid','email','profile'],
+        }).then((tokens)=>{
+            tokens.forEach(token => {
+
+
+                
+            })
+            if (token.idToken){
+                authClient.tokenManager.add('idToken',token)
+            }
+            if (token.accessToken){
+                authClient.tokenManager.add('accessToken',token)
+            }
+        })
+        authClient.tokenManager.get('idToken').then(idToken =>{
+            console.log(`Hello, ${idToken.claims.name} (${idToken.claims.email})`)
+            window.location.reload()
+        })
+    }
+
     this.signIn.remove();
     const tokens = await this.signIn.showSignInToGetTokens();
     await this.signIn.authClient.tokenManager.setTokens(tokens);
