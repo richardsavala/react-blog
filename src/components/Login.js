@@ -40,10 +40,6 @@ class Login extends React.Component {
             scopes:['openid','email','profile'],
         }).then((tokens)=>{
             tokens.forEach(token => {
-
-
-                
-            })
             if (token.idToken){
                 authClient.tokenManager.add('idToken',token)
             }
@@ -51,16 +47,18 @@ class Login extends React.Component {
                 authClient.tokenManager.add('accessToken',token)
             }
         })
+            
+            
         authClient.tokenManager.get('idToken').then(idToken =>{
             console.log(`Hello, ${idToken.claims.name} (${idToken.claims.email})`)
             window.location.reload()
         })
+    }).catch(error=>console.error(error))
+return 
+}else {
+        this.signIn.remove()
     }
-
-    this.signIn.remove();
-    const tokens = await this.signIn.showSignInToGetTokens();
-    await this.signIn.authClient.tokenManager.setTokens(tokens);
-    window.location.reload();
+    this.signIn.renderEL({el:'#singIn'})
   }
 
   render() {
