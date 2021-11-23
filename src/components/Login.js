@@ -17,7 +17,7 @@ const config = {
 
 export const signIn = typeof window !== "undefined" && new OktaSignIn(config);
 
-class Login extends React.Component {
+export default class Login extends React.Component {
   constructor(props) {
     super(props);
 
@@ -29,36 +29,40 @@ class Login extends React.Component {
   }
 
   async componentDidMount() {
-    const authClient = this.signIn.authClient
-    const session = await authClient.session.get()
-    console.log('session.status, session.status')
-    if (session.status === 'ACTIVE'){
-        window.location.hash = ''
-        this.setState( state: {user: session.login})
-        localStorage.setItem('isAuthenticated','true')
-        authClient.token.getWithoutPrompt({
-            scopes:['openid','email','profile'],
-        }).then((tokens)=>{
-            tokens.forEach(token => {
-            if (token.idToken){
-                authClient.tokenManager.add('idToken',token)
-            }
-            if (token.accessToken){
-                authClient.tokenManager.add('accessToken',token)
-            }
+    const authClient = this.signIn.authClient;
+    const session = await authClient.session.get();
+    console.log("session.status", session.status);
+    if (session.status === "ACTIVE") {
+      window.location.hash = ""
+      this.setState(state: { user: session.login });
+      localStorage.setItem("isAuthenticated", "true");
+      authClient.token
+        .getWithoutPrompt({
+          scopes: ["openid", "email", "profile"],
         })
-            
-            
-        authClient.tokenManager.get('idToken').then(idToken =>{
-            console.log(`Hello, ${idToken.claims.name} (${idToken.claims.email})`)
-            window.location.reload()
+        .then((tokens) => {
+          tokens.forEach(token => {
+            if (token.idToken) {
+              authClient.tokenManager.add("idToken", token);
+            }
+            if (token.accessToken) {
+              authClient.tokenManager.add("accessToken", token);
+            }
+          });
+
+          authClient.tokenManager.get("idToken").then((idToken) => {
+            console.log(
+              `Hello, ${idToken.claims.name} (${idToken.claims.email})`
+            );
+            window.location.reload();
+          });
         })
-    }).catch(error=>console.error(error))
-return 
-}else {
-        this.signIn.remove()
+        .catch((error) => console.error(error));
+      return;
+    } else {
+      this.signIn.remove();
     }
-    this.signIn.renderEL({el:'#singIn'})
+    this.signIn.renderEl({ el: "#signIn" });
   }
 
   render() {
@@ -66,4 +70,4 @@ return
   }
 }
 
-export default Login;
+
