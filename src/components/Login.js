@@ -10,8 +10,11 @@ const config = {
     typeof window !== "undefined" && window.location.origin + "/account",
   el: "#signIn",
   authParams: {
-    issuer: "<okta-org-url>/oauth2/default",
-    scopes: ["openid", "email", "profile"],
+    pkce: true,
+    responseType: ["token", "id_token"],
+  },
+  features: {
+    registration: true,
   },
 };
 
@@ -29,36 +32,10 @@ class Login extends React.Component {
   }
 
   async componentDidMount() {
-    const authClient = this.signIn.authClient
-    const session = await authClient.session.get()
-    console.log('session.status, session.status')
-    if (session.status === 'ACTIVE'){
-        window.location.hash = ''
-        this.setState( state: {user: session.login})
-        localStorage.setItem('isAuthenticated','true')
-        authClient.token.getWithoutPrompt({
-            scopes:['openid','email','profile'],
-        }).then((tokens)=>{
-            tokens.forEach(token => {
-            if (token.idToken){
-                authClient.tokenManager.add('idToken',token)
-            }
-            if (token.accessToken){
-                authClient.tokenManager.add('accessToken',token)
-            }
-        })
-            
-            
-        authClient.tokenManager.get('idToken').then(idToken =>{
-            console.log(`Hello, ${idToken.claims.name} (${idToken.claims.email})`)
-            window.location.reload()
-        })
-    }).catch(error=>console.error(error))
-return 
-}else {
-        this.signIn.remove()
-    }
-    this.signIn.renderEL({el:'#singIn'})
+    this.signIn.remove();
+    const tokens = await this.signIn.showSignInToGetTokens();
+    await this.signIn.authClient.tokenManager.setTokens(tokens);
+    window.location.reload();
   }
 
   render() {
@@ -67,3 +44,56 @@ return
 }
 
 export default Login;
+
+// export default class Login extends React.Component {
+//     constructor(props){
+//         super(props)
+
+//         this.state = {
+//             user: false,
+//         };
+
+//     this.signIn =signIn
+//     }
+//     async componentDidMount() {
+//         const authClient = this.signIn.authClient;
+//         const session = await authClient.session.get();
+//         console.log("session.status", session.status);
+//         if (session.status === "ACTIVE") {
+//             window.location.hash = "";
+//             setState(state:{ user: session.login });
+
+//             localStorage.setItem("isAuthenticated", "true");
+//             authClient.token
+//             .getWithoutPrompt({
+//                 scopes: ["openid", "email", "profile"],
+//             })
+//             .then((tokens) => {
+//             tokens.forEach((token) => {
+//                 if (token.idToken) {
+//                 authClient.tokenManager.add("idToken", token);
+//                 }
+//                 if (token.accessToken) {
+//                 authClient.tokenManager.add("accessToken", token);
+//                 }
+//             });
+
+//             authClient.tokenManager.get("idToken").then((idToken) => {
+//                 console.log(
+//                 `Hello, ${idToken.claims.name} (${idToken.claims.email})`
+//                 );
+//                 window.location.reload();
+//             });
+//             })
+//             .catch((error) => console.error(error));
+//         return;
+//         } else {
+//         this.signIn.remove();
+//         }
+//         this.signIn.renderEl({ el: "#signIn" });
+//     }
+
+//     render() {
+//         return <div id="signIn" />;
+//     }
+// }
