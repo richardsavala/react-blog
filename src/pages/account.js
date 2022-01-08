@@ -50,7 +50,7 @@ class Account extends React.Component {
         <h1>My Account</h1>
         <React.Fragment>
           <p>
-            Welcome, {this.state.user}.{" "}
+            Welcome, {this.state.user}.
             <button onClick={this.logout}>Logout</button>
           </p>
         </React.Fragment>
