@@ -11,6 +11,6 @@ module.exports = {
         `gatsby-transformer-remark`,
     ],
     flags: {
-        DEV_SSR: false
-    }
+        DEV_SSR: false,
+    },
 };

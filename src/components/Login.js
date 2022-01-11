@@ -10,6 +10,7 @@ const config = {
     typeof window !== "undefined" && window.location.origin + "/account",
   el: "#signIn",
   authParams: {
+    issuer: "https://dev-7870713.okta.com/oauth2/default",
     pkce: true,
     responseType: ["token", "id_token"],
   },
