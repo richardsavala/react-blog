@@ -3205,12 +3205,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const config = {
-  baseUrl: "dev-7870713.okta.com",
+  baseUrl: "https://relaxed-murdock-569d4d.netlify.app/account",
   clientId: "0oa2nzngmeZR8P5QY5d7",
   logo: "//logo.clearbit.com/gatsbyjs.org",
   redirectUri: typeof window !== "undefined" && window.location.origin + "/account",
   el: "#signIn",
   authParams: {
+    issuer: "https://dev-7870713.okta.com/oauth2/default",
     pkce: true,
     responseType: ["token", "id_token"]
   },
@@ -3361,11 +3362,11 @@ class Account extends (react__WEBPACK_IMPORTED_MODULE_0___default().Component) {
 
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("nav", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(gatsby__WEBPACK_IMPORTED_MODULE_2__.Link, {
       to: "/"
-    }, "Home"), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(gatsby__WEBPACK_IMPORTED_MODULE_2__.Link, {
+    }, "Home"), "", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(gatsby__WEBPACK_IMPORTED_MODULE_2__.Link, {
       to: "/account"
     }, "My Account"), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(gatsby__WEBPACK_IMPORTED_MODULE_2__.Link, {
       to: "/account/settings"
-    }, "Settings"), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "My Account"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Welcome, ", this.state.user, ".", " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    }, "Settings"), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "My Account"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Welcome, ", this.state.user, ".", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
       onClick: this.logout
     }, "Logout"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_reach_router__WEBPACK_IMPORTED_MODULE_1__.Router, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Home, {
       path: "/account"

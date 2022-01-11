@@ -31,6 +31,7 @@ class Account extends React.Component {
         console.error("Sign out error: " + error);
       })
       .then(() => {
+        localStorage.setItem("isAuthenticated", "false");
         this.setState({ user: false });
         navigate("/");
       });
@@ -44,13 +45,14 @@ class Account extends React.Component {
     return (
       <>
         <nav>
-          <Link to="/">Home</Link> <Link to="/account">My Account</Link>{" "}
+          <Link to="/">Home</Link>
+          <Link to="/account">My Account</Link>{" "}
           <Link to="/account/settings">Settings</Link>{" "}
         </nav>
         <h1>My Account</h1>
         <React.Fragment>
           <p>
-            Welcome, {this.state.user}.{" "}
+            Welcome, {this.state.user}.
             <button onClick={this.logout}>Logout</button>
           </p>
         </React.Fragment>
