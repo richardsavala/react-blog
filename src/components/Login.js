@@ -11,6 +11,7 @@ const config = {
   el: "#signIn",
   authParams: {
     issuer: "https://dev-7870713.okta.com/oauth2/default",
+    scopes: ["openid", "email", "profile"],
     pkce: true,
     responseType: ["token", "id_token"],
   },
