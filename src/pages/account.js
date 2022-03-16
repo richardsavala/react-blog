@@ -3,8 +3,8 @@ import { navigate, Router } from "@reach/router";
 import { Link } from "gatsby";
 import Login, { signIn } from "../components/Login";
 
-const Home = () => <p>Account Information</p>;
-const Settings = () => <p>Settings</p>;
+const Home = () => <p> Account Information </p>;
+const Settings = () => <p> Settings </p>;
 
 class Account extends React.Component {
   constructor(props) {
@@ -31,7 +31,7 @@ class Account extends React.Component {
         console.error("Sign out error: " + error);
       })
       .then(() => {
-        localStorage.setItem("isAuthenticated", "false");
+        // localStorage.setItem("isAuthenticated", "false");
         this.setState({ user: false });
         navigate("/");
       });
@@ -45,21 +45,20 @@ class Account extends React.Component {
     return (
       <>
         <nav>
-          <Link to="/">Home</Link>
-          <Link to="/account">My Account</Link>{" "}
-          <Link to="/account/settings">Settings</Link>{" "}
-        </nav>
-        <h1>My Account</h1>
+          <Link to="/"> Home </Link> <Link to="/account"> My Account </Link>{" "}
+          <Link to="/account/settings"> Settings </Link>{" "}
+        </nav>{" "}
+        <h1> My Account </h1>{" "}
         <React.Fragment>
           <p>
-            Welcome, {this.state.user}.
-            <button onClick={this.logout}>Logout</button>
-          </p>
-        </React.Fragment>
+            Welcome, {this.state.user}.{" "}
+            <button onClick={this.logout}> Logout </button>{" "}
+          </p>{" "}
+        </React.Fragment>{" "}
         <Router>
           <Home path="/account" />
           <Settings path="/account/settings" />
-        </Router>
+        </Router>{" "}
       </>
     );
   }
